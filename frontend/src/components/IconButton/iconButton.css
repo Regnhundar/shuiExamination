@@ -1,0 +1,13 @@
+.icon-button {
+    aspect-ratio: 1;
+    width: 4.5rem;
+    background-color: var(--cta);
+    border-radius: var(--border-radius);
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: contain;
+}
+
+.icon-button--post {
+    background-image: url(/icons/pen.svg);
+}
