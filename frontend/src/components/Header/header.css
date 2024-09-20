@@ -1,0 +1,25 @@
+.header {
+    padding: 0 2rem;
+    position: fixed;
+    z-index: 999;
+}
+
+.header + main {
+    padding-top: 5rem;
+}
+
+
+.header__logotype {
+    color: var(--primary-bg);
+    background-color: var(--cta);
+    font-weight: 700;
+    font-size: var(--xxl-font);
+    display: grid;
+    justify-items: end;
+    align-items: center;
+    padding: 0 1rem 0 2.5rem;
+    rotate: 90deg;
+    border-radius: 0 2px 2px 0;
+
+
+}

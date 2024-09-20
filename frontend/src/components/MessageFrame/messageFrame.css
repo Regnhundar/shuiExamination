@@ -1,0 +1,17 @@
+.message {
+    padding: 1rem;
+    background-color: var(--primary-text-bg);
+    break-inside: avoid;
+    position: relative;
+}
+
+.message::after {
+    content: "";
+    position: absolute;
+    bottom: -2rem;
+    right: 0;
+    aspect-ratio: 1;
+    width: 2rem;
+    background: linear-gradient(135deg, var(--primary-text-bg) 50%, transparent 50%);
+    box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+}
