@@ -10,8 +10,14 @@ function App() {
         <>
             <Header />
             <Routes>
-                <Route path="/" element={<MessageBoardPage />} />
-                <Route path="/new-post" element={<NewBoardPage />} />
+                <Route
+                    path="/"
+                    element={<MessageBoardPage />}
+                />
+                <Route
+                    path="/new-post"
+                    element={<NewBoardPage />}
+                />
             </Routes>
             {pathname === "/" ? <Footer /> : null}
         </>

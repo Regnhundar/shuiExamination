@@ -28,6 +28,7 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* outline: 2px solid red; */
 }
 
 .site-wrapper {
@@ -39,7 +40,12 @@ html {
 
 .section-wrapper {
   margin: 0 auto;
+  padding: 1rem;
   max-width: 1300px;
+}
+.loading-message {
+  color: var(--light-text);
+  font-size: var(--xxl-font);
 }
 
 body {
@@ -51,3 +57,4 @@ body {
 a {
   text-decoration: none;
 }
+
