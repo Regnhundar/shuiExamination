@@ -1,31 +1,89 @@
 .message-board {
-    width: 100%;
-    padding: 1rem;
-    columns: 350px;
+    display: grid;
+    /* section-wrapper max-width förstör... */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     column-gap: 1rem;
 }
-.message-board div {
+
+.message-board article {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     margin-bottom: 2.5rem;
+
 }
 
 .message__date {
     color: var(--opaque-text);
     font-size: var(--small-font);
+    grid-column: span 1;
+    padding-bottom: 1rem;
+}
+
+
+.message__button-wrapper {
+    margin: -.3rem -.5rem 0 0;
+    grid-column: span 1;
+    display: flex;
+    align-self: start;
+}
+
+.message-board article:hover .message__button-wrapper {
+    display: flex;
+}
+
+.message__delete-button {
+    padding: 0 0 2rem 2rem;
+    background-color: transparent;
+    aspect-ratio: 1;
+    width: 1.5rem;
+    background-image: url(/icons/delete.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    transition: scale .1s ease-in-out;
+}
+
+.message__edit-button {
+    padding: 0 0 2rem 2rem;
+    background-color: transparent;
+    aspect-ratio: 1;
+    width: 1.5rem;
+    background-image: url(/icons/edit.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    transition: scale .3s ease-in-out;
+}
+
+.message__delete-button:hover,
+.message__edit-button:hover {
+    scale: 1.2;
 }
 
 .message__bread {
     font-size: var(--medium-font);
-    margin-block: 1rem 2rem;
+    margin-bottom: 2rem;
+    grid-column: span 2;
 }
 
 .message__signature {
     font-size: var(--medium-font);
     font-style: italic;
     font-weight: bold;
+    grid-column: span 2;
 }
 
 .message__signature::before {
     content: "—";
     margin-right: 0.2rem;
-  }
-  
+
+}
+
+.message-board a {
+    position: fixed;
+    right: 2rem;
+    top: calc(100svh - 6.5rem);
+}

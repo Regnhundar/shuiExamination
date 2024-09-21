@@ -1,4 +1,5 @@
 .icon-button {
+    display: block;
     aspect-ratio: 1;
     width: 4.5rem;
     background-color: var(--cta);

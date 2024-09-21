@@ -1,0 +1,14 @@
+.text-button {
+    background-color: var(--cta);
+    border-radius: var(--border-radius);
+    padding: 1.3rem;
+    border: none;
+    font-size: var(--large-font);
+    font-weight: 600;
+    max-width: 400px;
+    cursor: pointer;
+}
+
+.text-button--invalid {
+    background-color: #ef4343ad;
+}
