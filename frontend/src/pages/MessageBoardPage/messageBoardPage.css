@@ -1,0 +1,31 @@
+.message-board {
+    width: 100%;
+    padding: 1rem;
+    columns: 350px;
+    column-gap: 1rem;
+}
+.message-board div {
+    margin-bottom: 2.5rem;
+}
+
+.message__date {
+    color: var(--opaque-text);
+    font-size: var(--small-font);
+}
+
+.message__bread {
+    font-size: var(--medium-font);
+    margin-block: 1rem 2rem;
+}
+
+.message__signature {
+    font-size: var(--medium-font);
+    font-style: italic;
+    font-weight: bold;
+}
+
+.message__signature::before {
+    content: "—";
+    margin-right: 0.2rem;
+  }
+  
