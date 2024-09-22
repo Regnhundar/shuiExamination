@@ -2,7 +2,7 @@ import { format, parseISO } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { sv } from "date-fns/locale";
 
-// @description: Tar emot UTC-tid som ligger på db som sträng och returnerar en ny formaterad sträng i format liknande: "tisdag 19 Sep, 16:45".
+// @description: Tar emot UTC-tid som ligger på db som sträng och returnerar en ny formaterad sträng i format liknande: "tisdag 19 Sep. 16:45".
 export function formatDate(utcDateString: string): string {
     const timeZone = "Europe/Stockholm";
     const utcDate = parseISO(utcDateString);
@@ -14,7 +14,7 @@ export function formatDate(utcDateString: string): string {
 
     const parts = formattedDate.split(" ");
     if (parts.length > 2) {
-        // Capitalize the month part (index 2 in the array)
+        // Stor bokstav på månad (index 2 i array)
         parts[2] = parts[2].charAt(0).toUpperCase() + parts[2].slice(1);
     }
 

@@ -20,6 +20,11 @@ export const postSchema = Joi.object({
     });
 
 export const updateSchema = Joi.object({
+    sk: Joi.date().iso().required().messages({
+        "date.base": "'sk' must be a valid date.",
+        "date.iso": "'sk' must be a valid iso 8601 string.",
+        "any.required": "'sk' is required.",
+    }),
     text: Joi.string().min(3).max(300).required().messages({
         "string.base": "'text' must be a string.",
         "string.min": "'text' have to be at least 3 characters long.",

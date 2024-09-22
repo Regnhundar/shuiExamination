@@ -90,6 +90,16 @@
     }
 }
 
+@media screen and (max-height: 610px) {
+    .message__text-input {
+        min-height: 30svh;
+    }
+
+    .post-form div {
+        min-height: 30svh;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .post-form {
         min-height: calc(100svh - 5rem);

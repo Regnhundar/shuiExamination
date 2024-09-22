@@ -11,9 +11,7 @@ export const handler = async (event) => {
         const body = event.body ? JSON.parse(event.body) : { empty: true };
 
         if (body.empty) {
-            throw new Error(
-                "Request body is missing or empty. You must provide a valid body to change a post."
-            );
+            throw new Error("Request body is missing or empty. You must provide a valid body to change a post.");
         }
         const { error } = updateSchema.validate(body);
 
@@ -22,24 +20,11 @@ export const handler = async (event) => {
             throw error;
         }
 
-        const { Items } = await db.query({
-            TableName: "shuiMessages",
-            KeyConditionExpression: "pk = :pk",
-            ExpressionAttributeValues: {
-                ":pk": id,
-            },
-        });
-
-        if (Items.length === 0) {
-            throw new Error(`Post with ID: ${id} not found.`);
-        }
-        const { sk } = Items[0];
-
         await db.update({
             TableName: "shuiMessages",
             Key: {
                 pk: id,
-                sk: sk,
+                sk: body.sk,
             },
             UpdateExpression: "SET #text = :text",
             ExpressionAttributeNames: {

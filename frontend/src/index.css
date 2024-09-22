@@ -12,7 +12,7 @@
 
   --border-radius: 4px;
 
-  --primary-font: 'PT Sans', sans-serif;
+  --primary-font-family: 'PT Sans', sans-serif;
   --small-font: 0.75rem;
   --medium-font: 1rem;
   --large-font: 1.5rem;
@@ -36,13 +36,16 @@ html {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100svh;
+
 }
 
 .section-wrapper {
   margin: 0 auto;
   padding: 1rem;
   max-width: 1300px;
+
 }
+
 .loading-message {
   color: var(--light-text);
   font-size: var(--xxl-font);
@@ -51,10 +54,9 @@ html {
 body {
   background-color: var(--primary-bg);
   color: var(--dark-text);
-  font-family: var(--primary-font);
+  font-family: var(--primary-font-family);
 }
 
 a {
   text-decoration: none;
 }
-
