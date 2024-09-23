@@ -16,8 +16,7 @@ export const handler = async (event) => {
         const { error } = updateSchema.validate(body);
 
         if (error) {
-            error.message = error.details[0].message;
-            throw error;
+            throw new Error(error.details[0].message);
         }
 
         await db.update({

@@ -1,15 +1,12 @@
+import { Link } from "react-router-dom";
 import "./header.css";
 
 const Header: React.FC = () => {
     return (
         <header className="header">
-            <a
-                className="header__logotype"
-                href="#"
-                aria-label="Back to top."
-            >
+            <Link className="header__logotype" to="/" aria-label="Navigate back home.">
                 S
-            </a>
+            </Link>
         </header>
     );
 };

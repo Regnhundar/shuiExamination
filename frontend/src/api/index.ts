@@ -1,12 +1,34 @@
 import axios from "axios";
+import { Message } from "../pages/MessageBoardPage/MessageBoardPage";
 
-export const getMessages = async () => {
+interface GetResults {
+    items: Message[];
+    success: boolean;
+    message: string;
+}
+export const getMessages = async (username?: string | null): Promise<GetResults> => {
     try {
-        const response = await axios.get("https://kkc4dyarwk.execute-api.eu-north-1.amazonaws.com/messages");
-        return response.data.data;
+        const url = username
+            ? `https://kkc4dyarwk.execute-api.eu-north-1.amazonaws.com/messages?username=${username}`
+            : `https://kkc4dyarwk.execute-api.eu-north-1.amazonaws.com/messages`;
+        const response = await axios.get(url);
+
+        return { items: response.data.data, message: "Det gick ju bra.", success: true };
     } catch (error) {
         console.error("Error at getMessages", error);
-        return [];
+        if (axios.isAxiosError(error) && error.response) {
+            return {
+                items: [],
+                message: error.response.data.error,
+                success: false,
+            };
+        } else {
+            return {
+                items: [],
+                message: "Something went wrong. Please try again.",
+                success: false,
+            };
+        }
     }
 };
 
@@ -46,7 +68,6 @@ export const deleteMessage = async (pk: string, sk: string): Promise<ApiResult> 
     try {
         await axios.delete(`https://kkc4dyarwk.execute-api.eu-north-1.amazonaws.com/messages/${pk}`, {
             data: {
-                pk: pk,
                 sk: sk,
             },
         });
