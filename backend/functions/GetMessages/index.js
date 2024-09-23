@@ -30,7 +30,8 @@ export const handler = async (event) => {
                 error.statusCode = 404;
                 throw error;
             }
-            return sendResponse(200, Items);
+            const sortedItems = Items.sort((a, b) => (a.sk > b.sk ? -1 : 1));
+            return sendResponse(200, sortedItems);
         }
     } catch (error) {
         return sendError(error.statusCode || 400, error.message || error);

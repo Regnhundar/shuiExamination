@@ -1,0 +1,107 @@
+.post-form {
+    display: grid;
+    width: 100%;
+    gap: 1.5rem;
+    place-items: center;
+    position: relative;
+    grid-template-rows: 1fr auto auto auto;
+}
+
+.post-form div {
+    width: 100%;
+    margin-bottom: auto;
+    min-height: 50svh;
+    display: grid;
+}
+
+
+.post-form button {
+    width: 100%;
+}
+
+.message__text-input {
+    font-size: var(--large-font);
+    width: 100%;
+    min-height: 50svh;
+    border: none;
+    padding: .5rem;
+    resize: none;
+    outline: none;
+}
+
+.message__text-input:user-invalid {
+    border: 1px dashed red;
+}
+
+.message__length-indicator {
+    user-select: none;
+    align-self: center;
+    justify-self: end;
+    font-size: var(--small-font);
+    color: var(--opaque-text)
+}
+
+.post-form__error-message {
+    color: red;
+    font-size: var(--medium-font);
+    grid-row: 2/3;
+    position: absolute;
+    top: .7rem;
+    align-self: start;
+    justify-self: center;
+    text-align: center;
+}
+
+.post-form__username {
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--primary-bg);
+    color: var(--light-text);
+    font-size: var(--large-font);
+    border: 1px solid white;
+    padding: 1.3rem;
+    border-radius: var(--border-radius);
+}
+
+.post-form__username:user-invalid {
+    border: 1px dashed red;
+}
+
+.post-form__username::placeholder {
+    font-size: var(--large-font);
+}
+
+.post-form__username:focus {
+    caret-color: white;
+}
+
+.post-form__username:focus::placeholder {
+    opacity: 0;
+}
+
+@media screen and (max-height: 740px) {
+    .message__text-input {
+        min-height: 37svh;
+    }
+
+    .post-form div {
+        min-height: 37svh;
+    }
+}
+
+@media screen and (max-height: 610px) {
+    .message__text-input {
+        min-height: 30svh;
+    }
+
+    .post-form div {
+        min-height: 30svh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post-form {
+        min-height: calc(100svh - 5rem);
+    }
+}

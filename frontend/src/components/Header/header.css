@@ -4,7 +4,8 @@
     z-index: 999;
 }
 
-.header + main {
+.header + main,
+.header + form {
     padding-top: 5rem;
 }
 
