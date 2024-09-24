@@ -23,6 +23,7 @@
     grid-column: span 1;
     padding-bottom: 1rem;
     cursor: pointer;
+    width: fit-content;
 }
 
 .message__error-message {
