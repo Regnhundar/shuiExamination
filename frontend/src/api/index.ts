@@ -74,7 +74,7 @@ export const deleteMessage = async (pk: string, sk: string): Promise<ApiResult> 
             message: "Message deleted succesfully.",
         };
     } catch (error) {
-        console.error("Error at postMessage", error);
+        console.error("Error at deleteMessage", error);
         if (axios.isAxiosError(error) && error.response) {
             return {
                 success: false,
