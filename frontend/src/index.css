@@ -36,14 +36,13 @@ html {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100svh;
-
 }
 
 .section-wrapper {
   margin: 0 auto;
   padding: 1rem;
   max-width: 1300px;
-
+  width: 100%;
 }
 
 .loading-message {
@@ -59,4 +58,12 @@ body {
 
 a {
   text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+  .section-wrapper {
+
+    padding: .5rem;
+
+  }
 }

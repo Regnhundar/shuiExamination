@@ -8,13 +8,7 @@ interface Props {
 }
 
 const IconButton: React.FC<Props> = ({ style, to, aria }) => {
-    return (
-        <Link
-            className={`icon-button icon-button--${style}`}
-            to={to}
-            aria-label={aria}
-        />
-    );
+    return <Link className={`icon-button icon-button--${style}`} to={to} aria-label={aria} />;
 };
 
 export default IconButton;

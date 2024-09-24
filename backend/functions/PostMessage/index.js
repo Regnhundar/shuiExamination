@@ -13,8 +13,7 @@ export const handler = async (event) => {
         const { error } = postSchema.validate(body);
 
         if (error) {
-            error.message = error.details[0].message;
-            throw error;
+            throw new Error(error.details[0].message);
         }
         const id = uuid().substring(0, 8);
         const newMessage = {

@@ -14,25 +14,18 @@ const NewBoardPage: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const handlePostMessage = async (
-        event: React.FormEvent<HTMLFormElement>
-    ) => {
+    const handlePostMessage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const result = await postMessage(username, message);
         if (result.success) {
             navigate("/");
         } else {
-            setErrorMessage(
-                result.message || "An error occurred. Please try again."
-            );
+            setErrorMessage(result.message || "An error occurred. Please try again.");
         }
     };
 
     return (
-        <form
-            className="post-form section-wrapper"
-            onSubmit={isValid ? handlePostMessage : undefined}
-        >
+        <form className="post-form section-wrapper" onSubmit={isValid ? handlePostMessage : undefined}>
             <MessageFrame>
                 <textarea
                     onChange={(e) => setMessage(e.target.value)}
@@ -45,11 +38,7 @@ const NewBoardPage: React.FC = () => {
                 />
                 <span className="message__length-indicator">{`${message.length}/300`}</span>
             </MessageFrame>
-            {errorMessage.length > 1 ? (
-                <h2 className="post-form__error-message">{errorMessage}</h2>
-            ) : (
-                ""
-            )}
+            {errorMessage.length > 1 ? <h2 className="post-form__error-message">{errorMessage}</h2> : ""}
             <input
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Användarnamn..."
@@ -62,11 +51,7 @@ const NewBoardPage: React.FC = () => {
                 autoComplete="off" // Om det är på så kommer den vita textindikatorn att försvinna när man väljer namn i listan.
                 required
             />
-            <TextButton
-                type={"submit"}
-                textContent="Publicera"
-                valid={isValid}
-            />
+            <TextButton type={"submit"} textContent="Publicera" valid={isValid} />
         </form>
     );
 };
