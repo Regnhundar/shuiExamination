@@ -2,9 +2,9 @@ import MessageFrame from "../../components/MessageFrame/MessageFrame";
 import "./messageBoardPage.css";
 import { useEffect, useState } from "react";
 import { getMessages, deleteMessage, updateMessage } from "../../api";
-import { formatDate } from "../../utilities/utilityFunctions";
 import IconButton from "../../components/IconButton/IconButton";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import MessageContent from "../../components/MessageContent/MessageContent";
 
 export interface Message {
     pk: string;
@@ -22,7 +22,6 @@ const MessageBoardPage: React.FC = () => {
     const [isEditable, setIsEditable] = useState<string | null>(null); // Används som boolean. Sparar ned pk. isEditable === message.pk blir då en boolean.
     const [newText, setNewText] = useState("");
     const location = useLocation();
-    const navigate = useNavigate();
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
@@ -87,9 +86,20 @@ const MessageBoardPage: React.FC = () => {
         }
     };
 
-    const reverseOrderOfMessages = () => {
+    const handleMessageSort = () => {
         const copyOfMessages = [...messages];
         setMessages(copyOfMessages.reverse());
+    };
+
+    const handleToggleEdit = (pk: string, sk: string, text: string) => {
+        {
+            if (isEditable === pk) {
+                handleUpdateMessage(pk, sk);
+            } else {
+                setIsEditable(pk);
+                setNewText(text);
+            }
+        }
     };
 
     return (
@@ -102,61 +112,16 @@ const MessageBoardPage: React.FC = () => {
                         {messages.length < 1 ? <h2 className="message-board__jumbotron">{jumbotron}</h2> : ""} {/*Error-meddelanden. */}
                         {messages.map((message) => (
                             <MessageFrame html={"article"} key={message.pk}>
-                                <h3 className="message__date" onClick={reverseOrderOfMessages} title="Vänd på datumsorteringen.">
-                                    {formatDate(message.sk)}
-                                </h3>
-
-                                <div className="message__button-wrapper">
-                                    <button
-                                        onClick={() => {
-                                            if (isEditable === message.pk) {
-                                                handleUpdateMessage(message.pk, message.sk);
-                                            } else {
-                                                setIsEditable(message.pk);
-                                                setNewText(message.text);
-                                            }
-                                        }}
-                                        className={`message__button ${isEditable === message.pk ? "message__button--save" : "message__button--edit"}`}
-                                        title={isEditable === message.pk ? "Spara dina förändringar." : "Editera meddelandet."}></button>
-                                    <button
-                                        className="message__button message__button--delete"
-                                        title="Radera meddelandet."
-                                        onClick={() => {
-                                            handleDeleteMessage(message.pk, message.sk);
-                                        }}></button>
-                                </div>
-
-                                {isEditable === message.pk ? (
-                                    <>
-                                        <textarea
-                                            value={newText}
-                                            onChange={(e) => setNewText(e.target.value)}
-                                            className="message__edit-textarea"
-                                            minLength={3}
-                                            maxLength={300}
-                                            onKeyDown={(e) => {
-                                                if (e.key === "Escape") {
-                                                    setIsEditable(null);
-                                                }
-                                            }}
-                                            required
-                                        />
-                                        <span className="message__word-count">{`${newText.length}/300`}</span>
-                                    </>
-                                ) : (
-                                    <p className="message__bread">{message.text}</p>
-                                )}
-                                {message.errorMessage && (
-                                    <h3 key={message.errorId} className="message__error-message">
-                                        {message.errorMessage}
-                                    </h3>
-                                )}
-                                <h2
-                                    className="message__signature"
-                                    onClick={() => navigate(`?username=${message.username}`)}
-                                    title={`Hitta alla meddelanden från ${message.username}`}>
-                                    {message.username}
-                                </h2>
+                                <MessageContent
+                                    message={message}
+                                    handleMessageSort={handleMessageSort}
+                                    handleToggleEdit={handleToggleEdit}
+                                    handleDeleteMessage={handleDeleteMessage}
+                                    isEditable={isEditable}
+                                    setIsEditable={setIsEditable}
+                                    newText={newText}
+                                    setNewText={setNewText}
+                                />
                             </MessageFrame>
                         ))}
                         <IconButton style={"post"} aria={"Create a message."} to={"/new-post"} />
