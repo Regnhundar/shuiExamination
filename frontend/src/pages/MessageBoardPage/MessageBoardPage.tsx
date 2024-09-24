@@ -92,13 +92,11 @@ const MessageBoardPage: React.FC = () => {
     };
 
     const handleToggleEdit = (pk: string, sk: string, text: string) => {
-        {
-            if (isEditable === pk) {
-                handleUpdateMessage(pk, sk);
-            } else {
-                setIsEditable(pk);
-                setNewText(text);
-            }
+        if (isEditable === pk) {
+            handleUpdateMessage(pk, sk);
+        } else {
+            setIsEditable(pk);
+            setNewText(text);
         }
     };
 
