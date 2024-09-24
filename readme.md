@@ -161,8 +161,8 @@ Exempel:
 
 ```
 {
-	"sk" : "2024-09-22T21:22:16.780Z"
-    "text" : "Hej och hå farbror blå."
+	"sk" : "2024-09-22T21:22:16.780Z",
+	"text" : "Hej och hå farbror blå."
 }
 ```
 

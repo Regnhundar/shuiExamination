@@ -1,0 +1,118 @@
+.message__date {
+    color: var(--opaque-text);
+    font-size: var(--small-font);
+    grid-column: span 1;
+    padding-bottom: 1rem;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.message__error-message {
+    color: red;
+    font-size: var(--small-font);
+    position: absolute;
+    bottom: 2.5rem;
+    left: 1.5rem;
+    opacity: 1;
+    animation: errorMessage 6s forwards;
+}
+
+@keyframes errorMessage {
+    0% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.message__button-wrapper {
+    margin: -.3rem -.5rem 0 0;
+    grid-column: span 1;
+    display: flex;
+    align-self: start;
+}
+
+.message__button {
+    padding: 0 0 2rem 2rem;
+    background-color: transparent;
+    aspect-ratio: 1;
+    width: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    transition: scale .1s ease-in-out;
+}
+
+.message__button--edit {
+    background-image: url(/icons/edit.svg);
+}
+
+.message__button--save {
+    background-image: url(/icons/save.svg);
+}
+
+.message__button--delete {
+    background-image: url(/icons/delete.svg);
+}
+
+.message__button:hover {
+    scale: 1.2;
+}
+
+.message__edit-textarea:user-invalid {
+    border: 1px dashed red;
+}
+
+.message__edit-textarea:focus {
+    outline: 2px solid green;
+    border: none;
+}
+
+.message__edit-textarea:focus:user-invalid {
+    outline: 2px solid red;
+}
+
+.message__edit-textarea {
+    width: 100%;
+    grid-column: 1/-1;
+    min-height: 10rem;
+    border: 1px dotted green;
+    padding: .5rem;
+    resize: none;
+}
+
+.message__word-count {
+    position: absolute;
+    user-select: none;
+    bottom: 2.5rem;
+    right: 1.5rem;
+    font-size: var(--small-font);
+    color: var(--opaque-text)
+}
+
+.message__bread {
+    font-size: var(--medium-font);
+    margin-bottom: 2rem;
+    grid-column: span 2;
+}
+
+.message__signature {
+    font-size: var(--medium-font);
+    font-style: italic;
+    font-weight: bold;
+    grid-column: span 2;
+    cursor: pointer;
+}
+
+.message__signature::before {
+    content: "—";
+    margin-right: 0.2rem;
+
+}
