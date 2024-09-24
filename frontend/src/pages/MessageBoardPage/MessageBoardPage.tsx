@@ -18,7 +18,7 @@ export interface Message {
 const MessageBoardPage: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [jumbotron, setJumbotron] = useState("");
+    const [jumbotron, setJumbotron] = useState(""); // Används för att visa felmeddelande för sidan.
     const [isEditable, setIsEditable] = useState<string | null>(null); // Används som boolean. Sparar ned pk. isEditable === message.pk blir då en boolean.
     const [newText, setNewText] = useState("");
     const location = useLocation();
@@ -27,12 +27,10 @@ const MessageBoardPage: React.FC = () => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const username = searchParams.get("username");
-
         setIsLoading(true);
-
         getMessages(username)
             .then((messagesData) => {
-                const { items, message, success } = messagesData; // Destructure items and message
+                const { items, message, success } = messagesData;
                 if (success) {
                     const sortedItems = items.sort((a, b) => (a.sk > b.sk ? -1 : 1));
                     setMessages(sortedItems);
@@ -40,9 +38,6 @@ const MessageBoardPage: React.FC = () => {
                 } else {
                     setJumbotron(message);
                 }
-            })
-            .catch((error) => {
-                console.error("Error fetching messages:", error);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -104,10 +99,10 @@ const MessageBoardPage: React.FC = () => {
                     <h2 className="loading-message">Loading...</h2>
                 ) : (
                     <>
-                        {messages.length < 1 ? <h2 className="message-board__jumbotron">{jumbotron}</h2> : ""}
+                        {messages.length < 1 ? <h2 className="message-board__jumbotron">{jumbotron}</h2> : ""} {/*Error-meddelanden. */}
                         {messages.map((message) => (
                             <MessageFrame html={"article"} key={message.pk}>
-                                <h3 className="message__date" onClick={reverseOrderOfMessages}>
+                                <h3 className="message__date" onClick={reverseOrderOfMessages} title="Vänd på datumsorteringen.">
                                     {formatDate(message.sk)}
                                 </h3>
 
@@ -156,7 +151,10 @@ const MessageBoardPage: React.FC = () => {
                                         {message.errorMessage}
                                     </h3>
                                 )}
-                                <h2 className="message__signature" onClick={() => navigate(`?username=${message.username}`)}>
+                                <h2
+                                    className="message__signature"
+                                    onClick={() => navigate(`?username=${message.username}`)}
+                                    title={`Hitta alla meddelanden från ${message.username}`}>
                                     {message.username}
                                 </h2>
                             </MessageFrame>
